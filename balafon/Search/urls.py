@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^add-contacts-to-group/$', views.add_contacts_to_group, name='search_add_contacts_to_group'),
     url(r'^contacts-admin/$', views.contacts_admin, name='search_contacts_admin'),
     url(r'^export_to_pdf/$', views.export_to_pdf, name='search_export_to_pdf'),
+    url(r'^search-map/(?P<search_id>\d+)/$', views.display_map, name='search_display_map'),
 ]

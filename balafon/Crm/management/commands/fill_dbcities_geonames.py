@@ -81,11 +81,13 @@ def fill_db():
     app_dir_name = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     geonames_file_name = os.path.join(app_dir_name, 'fixtures/GeoNames_f.txt')
 
+    with open(geonames_file_name, "r") as file2:
+        nblines = 0
+        for line in file2:
+            nblines+=1
+            
     with codecs.open(geonames_file_name, "r", "latin-1") as file1:
-        nbcities = 0
         count = 0
-        for l in file1:
-            nbcities += 1
         for l in file1:
             words = l.split("\t")
             cname = words[2]
@@ -99,19 +101,11 @@ def fill_db():
                 tab.append(cname)
             zone = Zone.objects.get(name=dept)
 
-            city, is_new = City.objects.get_or_create(name=cname, parent=zone)
-            if is_new:
-                city.district_id = words[8]
-                city.latitude = float(words[9])
-                city.longitude = float(words[10]),
-                city.zip_code = words[1]
-            city.geonames_valid = True
-            city.country = 'France'
+            city = City(name=cname, parent=zone, district_id = words[8], latitude = float(words[9]), longitude = float(words[10]), geonames_valid = True, country = 'France')
             city.save()
-
-            count += 1
-            if count % 500 == 0:
-                print(count + "/" + nbcities)
+            count+=1
+            if count%500 == 0:
+                print(`count` + "/" + `nblines`)
 
     # Modify city names (already in the database) to correspond to GeoNames ones
     cities = list(City.objects.filter(parent__parent__parent__name='France', geonames_valid=False))
@@ -119,7 +113,6 @@ def fill_db():
         try:
             if c.parent.type.name != 'Pays':
                 # Detect if the city name has already changed (0 if not / 1 if it changed)
-                print c
                 name_changed = 0
                 cname1 = remove_accents(c.name.lower())
                 tab1 = dict_dept.get(c.parent.name)

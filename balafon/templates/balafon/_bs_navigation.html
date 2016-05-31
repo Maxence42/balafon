@@ -157,6 +157,10 @@
                   <span class="glyphicon glyphicon-import"></span>
                   {% trans "Contacts import" %}
                 </a></li>{% endif %}
+                {%if user.is_staff %}<li><a href="{% url 'crm_mail_contacts_import' %}">
+                  <span class="glyphicon glyphicon-import"></span>
+                  {% trans "Mailbox contacts import" %}
+                </a></li>{% endif %}
                 {%if user.is_staff %}<li><a href="{% url 'crm_unsubscribe_contacts_import' %}">
                   <span class="glyphicon glyphicon-import"></span>
                   {% trans "Unsubscribe emails" %}

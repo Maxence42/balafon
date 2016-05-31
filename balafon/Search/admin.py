@@ -17,3 +17,6 @@ class SearchFieldAdmin(admin.ModelAdmin):
     raw_id_admin = ('search_group',)
 admin.site.register(models.SearchField, SearchFieldAdmin)
 
+class SearchResultAdmin(admin.ModelAdmin):
+    list_display = ['id', 'nb_results', 'results']
+admin.site.register(models.SearchResult, SearchResultAdmin)

@@ -78,7 +78,7 @@ $(document).bind('cbox_complete', function() {
                                                         map.setCenter(cproj, 17);
                                                         
                                                         $.ajax({
-                                                               url: "http://localhost:8000/fr/crm/putcoords/?ent="+ent_id+"&lat="+lat+"&lon="+lon+"&type="+type_ent,
+                                                               url: "{% url 'crm_put_coords' %}?ent="+ent_id+"&lat="+lat+"&lon="+lon+"&type="+type_ent,
                                                                success: function(data) {
 
                                                                }

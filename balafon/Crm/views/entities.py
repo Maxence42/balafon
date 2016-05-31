@@ -313,7 +313,7 @@ def get_addr(request):
             address = entity.entity.address
         city = entity.entity.city.name
     
-    return HttpResponse(json.dumps({'address': address, 'city': city, 'latitude': latitude, 'longitude': longitude, 'lat': lat, 'lon': lon}), 'application/json')
+    return HttpResponse(json.dumps({'address': address, 'city': city, 'latitude': latitude, 'longitude': longitude, 'lat': lat, 'lon': lon, 'name': entity.name}), 'application/json')
 
 
 @user_passes_test(can_access)

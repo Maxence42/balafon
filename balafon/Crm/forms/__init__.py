@@ -10,7 +10,7 @@ from balafon.Crm.forms.actions import (
 from balafon.Crm.forms.base import BetterBsForm, BetterBsModelForm, ModelFormWithCity, FormWithCity
 from balafon.Crm.forms.contacts import (
     ContactForm, SelectContactForm, SelectContactOrEntityForm, SameAsForm, SameAsPriorityForm, AddRelationshipForm,
-    ContactsImportForm, ContactsImportConfirmForm, UnsubscribeContactsImportForm, SameAsSuggestionForm
+    ContactsImportForm, ContactsImportConfirmForm, UnsubscribeContactsImportForm, SameAsSuggestionForm, MailImportForm
 )
 from balafon.Crm.forms.custom_fields import (
     CustomFieldForm, ContactCustomFieldForm, EntityCustomFieldForm

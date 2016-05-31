@@ -2,8 +2,13 @@
 """import data from files"""
 
 from datetime import datetime
+import email
+import imaplib
 import os.path
 import re
+import json
+
+
 
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -11,7 +16,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.messages import success, error
 from django.db.models import Max
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
 from django.utils.text import slugify
 from django.utils.translation import ugettext as _
@@ -40,6 +45,62 @@ def new_contacts_import(request):
 
     return render_to_response(
         'Crm/new_contacts_import.html',
+        {'form': form},
+        context_instance=RequestContext(request)
+    )
+
+
+@user_passes_test(can_access)
+def mail_contacts_import(request):
+    """view"""
+    if request.method == 'POST':
+        instance = models.Mail_Import(imported_by=request.user, date=datetime.now())
+        form = forms.MailImportForm(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            addr = request.POST.get('mail_address')
+            passwd = request.POST.get('password')
+            numprov = request.POST.get('provider')
+            if numprov and addr and passwd:
+                prov = models.MailProvider.objects.get(id=numprov)
+                exped = ""
+                mail = imaplib.IMAP4_SSL(prov.imapServer, prov.port)
+                mail.login(addr, passwd)
+                mail.select("inbox")
+                
+                (status, res) = mail.list()
+                # renvoie ('OK', ['nombre de messages']) ou sinon ('NO', ['message erreur'])
+                (status, numberMessages) = mail.select('INBOX')
+                print status, 'Nombre de messages = ', numberMessages
+                # renvoie par exemple ('OK', ['1 2 3 4 5']) qui sont les numeros des messages.
+                search_critera = 'REVERSE DATE'
+                (status, searchRes) = mail.search(None, 'ALL')
+                # Recuperation des numeros des messages
+                ids = searchRes[0].split()
+                for i in range(len(ids)-100, len(ids)):
+                    # Recupere seulement l'expediteur et le sujet dans le header
+                    (status, res) = mail.fetch(ids[i], '(BODY[HEADER.FIELDS (FROM SUBJECT)])')
+                    for responsePart in res:
+                        if isinstance(responsePart, tuple):
+                            msg = email.message_from_string(responsePart[1])
+                            sender = msg['from']
+                            if "<" in sender:
+                                sender=sender.split("<")[1]
+                                sender=sender.split(">")[0]
+                            if exped == "":
+                                exped = sender
+                            elif exped != "" and not sender in exped:
+                                exped = exped + "\t" + sender
+                contact_import = form.save()
+                contact_import.content = exped
+                contact_import.save()
+                mail.close()
+                mail.logout()
+            return HttpResponseRedirect(reverse('crm_confirm_mail_import', args=[contact_import.id]))
+    else:
+        form = forms.MailImportForm()
+
+    return render_to_response(
+        'Crm/mail_contacts_import.html',
         {'form': form},
         context_instance=RequestContext(request)
     )
@@ -534,3 +595,42 @@ def unsubscribe_contacts_import(request):
         {'form': form},
         context_instance=RequestContext(request)
     )
+
+
+@user_passes_test(can_access)
+def confirm_mail_import(request, import_id):
+    """view"""
+    if request.method == 'POST':
+        for i in range(100):
+            if request.POST.get("check" + `i`) == "on":
+                company = request.POST.get("company" + `i`)
+                if company == "":
+                    company = models.Entity(name="", is_single_contact=True)
+                    company.save()
+                    contact = models.Contact.objects.get(entity=company)
+                elif models.Entity.objects.filter(name=company).exists():
+                    comp = models.Entity.objects.filter(name=company)
+                    company = comp[0]
+                    contact = models.Contact(entity=company)
+                else:
+                    company = models.Entity(name=company)
+                    company.save()
+                    contact = contact = models.Contact.objects.get(entity=company)
+                contact.email = request.POST.get("mail" + `i`)
+                if request.POST.get("name" + `i`) != "":
+                    contact.lastname = request.POST.get("name" + `i`)
+                if request.POST.get("fname" + `i`) != "":
+                    contact.firstname = request.POST.get("fname" + `i`)                
+                contact.entity = company
+                contact.save()
+        return HttpResponseRedirect(reverse('crm_view_entities_list'))
+    else:    
+        exped = []
+        content = models.Mail_Import.objects.get(id=import_id)
+        content = content.content.split("\t")
+        for w in content:
+            if "noreply" in w or "NOREPLY" in w or "mailing" in w or "newsletter" in w:
+                pass
+            else:
+                exped.append(w)
+        return render(request, 'Crm/confirm_mail_import.html', {'exped': exped, 'nb': 0})

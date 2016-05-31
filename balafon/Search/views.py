@@ -11,7 +11,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import user_passes_test
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext, Context, Template
 from django.utils.translation import ugettext as _
 
@@ -26,7 +26,7 @@ from balafon.Crm.models import Entity, Contact, Group, Action, Opportunity, City
 from balafon.Crm import settings as crm_settings
 from balafon.Emailing.models import Emailing
 from balafon.Emailing.forms import NewEmailingForm
-from balafon.Search.models import Search
+from balafon.Search.models import Search, SearchResult
 from balafon.Search.forms import (
     ActionForContactsForm, FieldChoiceForm, GroupForContactsForm, QuickSearchForm, PdfTemplateForm, SearchForm,
     SearchNameForm, get_field_form, ContactsAdminForm
@@ -148,7 +148,21 @@ def search(request, search_id=0, group_id=0, opportunity_id=0, city_id=0):
     entities_count = 0 if contacts_display else len(results)
 
     page_obj = paginate(request, results, getattr(settings, 'BALAFON_SEARCH_NB_IN_PAGE', None) or 50)
-
+    
+    nbres = len(results)
+    res = ""
+    for r in results:
+        if res == "":
+            res = `r.id`
+        else:
+            res = res + "\t" + `r.id`
+    searchres = SearchResult(nb_results=nbres, results=res)
+    searchres.save()
+    
+    searchtab = SearchResult.objects.filter(nb_results=0)
+    for s in searchtab:
+        s.delete()
+    
     return render_to_response(
         'Search/search.html',
         {
@@ -166,6 +180,7 @@ def search(request, search_id=0, group_id=0, opportunity_id=0, city_id=0):
             'opportunity': opportunity,
             'city': city,
             'contacts_display': contacts_display,
+            'search_id': searchres.id,
         },
         context_instance=RequestContext(request)
     )
@@ -623,3 +638,13 @@ def export_to_pdf(request):
         logger.exception("export_to_pdf")
         raise
     raise Http404
+
+@user_passes_test(can_access)
+@popup_redirect
+def display_map(request, search_id):
+    search = SearchResult.objects.get(id=search_id)
+    searchres = search.results.split("\t")
+    result_ids = []
+    for r in searchres:
+        result_ids.append(int(r))
+    return render(request, "Search/display_map.html", {'search': json.dumps(result_ids)})

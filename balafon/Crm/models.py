@@ -1704,3 +1704,24 @@ class SpecialCaseCity(models.Model):
         verbose_name = _(u'special case city')
         verbose_name_plural = _(u'special case cities')
         ordering = ['city']
+
+
+class MailProvider(models.Model):
+    name = models.CharField(_(u'name'), max_length=50)
+    imapServer = models.CharField(_(u'imap server'), max_length=100)
+    port = models.IntegerField(_(u'imap port'), default=993)
+    
+    def __unicode__(self):
+        return self.name
+
+
+class Mail_Import(models.Model):
+    provider = models.ForeignKey(MailProvider)
+    mail_address = models.EmailField(_(u'Email address'), max_length=200)
+    date = models.DateField(_(u'Date'), default=None)
+    imported_by = models.ForeignKey(User, verbose_name=_(u'imported by'), default=None)
+    content = models.CharField(_(u'Content'), max_length=10000, default="")
+    
+    def __unicode__(self):
+        return self.mail_address
+

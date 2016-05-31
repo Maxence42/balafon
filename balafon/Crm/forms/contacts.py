@@ -489,3 +489,23 @@ class ContactsImportConfirmForm(ContactsImportForm):
 class UnsubscribeContactsImportForm(forms.Form):
     """A form for uploading a file"""
     input_file = forms.FileField()
+
+
+class MailImportForm(BsModelForm):
+    """form for importing data from a mailbox"""
+    
+    password = forms.CharField(widget=forms.PasswordInput)
+    
+    class Meta:
+        """form from model"""
+        model = models.Mail_Import
+        fields = ('provider', 'mail_address', )
+
+    class Media:
+        """media files"""
+        css = {
+            'all': ('chosen/chosen.css', 'chosen/chosen-bootstrap.css')
+        }
+        js = (
+            'chosen/chosen.jquery.js',
+        )

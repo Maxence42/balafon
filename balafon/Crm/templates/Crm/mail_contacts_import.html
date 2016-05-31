@@ -1,0 +1,32 @@
+{% extends "balafon/bs_base.html" %}
+{% load i18n floppyforms %}
+
+{% block extra_head %}
+  {{block.super}}
+  {{form.media}}
+  
+{% endblock %}
+
+{% block document_content %}
+  <div class="row"><div class="col-md-12">
+  <h2>{% trans "Import contacts" %}</h2>
+  
+  <form role="form" method="POST" action="">{% csrf_token %}
+      <div class="import-contact-intro">
+        {% blocktrans %}Enter your email address, password and choose your mailbox provider, then click on submit. The password won't be saved in the database, it will be forgotten after the connection.
+        Some providers (like Gmail) may not allow you to connect because they don't know this domain. You have to change your account settings.
+        {% endblocktrans %}
+      </div>
+      
+      {% include "bs/form_fields.html" %}
+  
+    <div class="row">
+      <div class="col-md-6 col-md-offset-6">
+        <input class="btn btn-md btn-primary" type="submit" value="{% trans "Import"%}">
+        <a class="btn btn-md btn-default" href="{{cancel_url}}">{% trans "Cancel" %}</a>
+      </div>
+    </div>
+  </form>
+  <script type="text/javascript"> $(".chzn-select").chosen();</script>
+  </div></div>
+{% endblock %}

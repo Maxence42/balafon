@@ -96,7 +96,7 @@ class SubscriptionInline(admin.TabularInline):
 
 class ContactAdmin(admin.ModelAdmin):
     """custom admin view"""
-    list_display = ['lastname', 'firstname', 'entity', 'city', 'latitude', 'longitude']
+    list_display = ['lastname', 'firstname', 'entity', 'email', 'city', 'latitude', 'longitude']
     search_fields = ['lastname']
     raw_id_admin = ('entity',)
     inlines = (SubscriptionInline,)
@@ -220,3 +220,17 @@ class SpecialCaseCityAdmin(admin.ModelAdmin):
     search_fields = ['city__name']
 
 admin.site.register(models.SpecialCaseCity, SpecialCaseCityAdmin)
+
+class MailProviderAdmin(admin.ModelAdmin):
+    list_display = ['name', 'imapServer', 'port', ]
+    list_filter = ['name']
+    search_fields = ['name']
+
+admin.site.register(models.MailProvider, MailProviderAdmin)
+
+class MailImportAdmin(admin.ModelAdmin):
+    list_display = ['mail_address', 'date', 'content']
+    list_filter = ['mail_address']
+    search_fields = ['mail_address']
+
+admin.site.register(models.Mail_Import, MailImportAdmin)
