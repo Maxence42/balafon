@@ -20,27 +20,38 @@ $(document).bind('cbox_complete', function() {
               map.addLayer( new OpenLayers.Layer.OSM() );
               var projFrom = new OpenLayers.Projection("EPSG:4326");
               var projTo = new OpenLayers.Projection("EPSG:900913");
-              var center = new OpenLayers.LonLat(2,48);
+              var center = new OpenLayers.LonLat(2,47);
               var cproj = center.transform(projFrom, projTo);
-              map.setCenter(cproj, 6);
+              map.setCenter(cproj, 5);
               var size = new OpenLayers.Size(21,25);
               var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
               var icon = new OpenLayers.Icon('http://openlayers.org/api/img/marker.png', size, offset);
+              var markers = new OpenLayers.Layer.Markers( "Markers" );
+              map.addLayer(markers);
               
               for (i=0; i<search.length; i++) {
                      ent_id = search[i]
                      $.ajax({
+                            async:false,
                             url: "{% url 'crm_get_addr' %}?term=" + ent_id + "&type=e",
                             success: function(data) {
+                                   entity_name = data.name
                                    if (data.lat && data.lon) {
                                           lat = data.lat;
                                           lon = data.lon;
-                                          name = data.name;
-                                          var markers = new OpenLayers.Layer.Markers( "Markers" );
+                                          var markers = new OpenLayers.Layer.Markers( entity_name );
                                           var mcenter = new OpenLayers.LonLat(lon,lat);
                                           var mproj = mcenter.transform(projFrom, projTo);
-                                          markers.addMarker(new OpenLayers.Marker(mproj,icon.clone()));
+                                          mark = new OpenLayers.Marker(mproj,icon.clone())
+                                          mark.events.register('mouseover', mark, function() {     
+                                                 var popup = new OpenLayers.Popup.FramedCloud("Popup", mproj, null, markers.name, null, false);          
+                                                 map.addPopup(popup);                                             
+                                                 markers.events.register('mouseout', markers, setTimeout( function() { popup.destroy(); }, 1000));           
+                                          });
+                                          markers.addMarker(mark);
                                           map.addLayer(markers);
+                                          
+                                          
                                    }
                                    else if (data.address) {
                                           var address = data.address
@@ -58,22 +69,27 @@ $(document).bind('cbox_complete', function() {
                                                                lat = data[0].lat;
                                                                lon = data[0].lon;
                                                                // Ajout d'un calque en utilisant le rendu par défaut
-                                                               var markers = new OpenLayers.Layer.Markers( "Markers" );
+                                                               var markers = new OpenLayers.Layer.Markers( entity_name );
                                                                var center = new OpenLayers.LonLat(lon,lat);
-                                                               var proj = center.transform(projFrom, projTo);
-                                                               var size = new OpenLayers.Size(21,25);
-                                                               var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-                                                               var icon = new OpenLayers.Icon('http://openlayers.org/api/img/marker.png', size, offset);
-                                                               markers.addMarker(new OpenLayers.Marker(proj,icon));
-                                                               map.addLayer(markers)                                                               
+                                                               var mproj = center.transform(projFrom, projTo);
+                                                               mark = new OpenLayers.Marker(mproj,icon.clone())
+                                                               
+                                                               mark.events.register('mouseover', mark, function() {    
+                                                                      var popup = new OpenLayers.Popup.Framed("Popup", mproj, null, markers.name, null, false);          
+                                                                      map.addPopup(popup);                                             
+                                                                      markers.events.register('mouseout', markers, setTimeout( function() { popup.destroy(); }, 700));           
+                                                               });
+                                                               markers.addMarker(mark);
+                                                               map.addLayer(markers);
                                                                $.ajax({
+                                                                      async:false,
                                                                       url: "{% url 'crm_put_coords' %}?ent="+ ent_id +"&lat="+lat+"&lon="+lon+"&type=e",
                                                                       success: function(data) {
-              
                                                                       }
                                                                })
                                                                
                                                         }
+                                                        console.log(entity_name + " : no valid address")
                                                  }
                                           });
                                    }  
@@ -87,7 +103,7 @@ $(document).bind('cbox_complete', function() {
 </head>
 
 <body>
-       <span class="glyphicon glyphicon-warning-sign" id='warning' style="color:transparent"></span><strong><span id="msg"></span></strong>
+       <span class="glyphicon glyphicon-warning-sign" id='warning' style="color:red"></span><strong>The map may take time to display, depending on the number of results.</strong>
        <div id="map"></div>
 
 </body>
