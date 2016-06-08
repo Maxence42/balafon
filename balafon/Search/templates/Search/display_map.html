@@ -30,10 +30,18 @@ $(document).bind('cbox_complete', function() {
               map.addLayer(markers);
               
               for (i=0; i<search.length; i++) {
-                     ent_id = search[i]
+                     eid = search[i]
+                     if(eid % 10 == 0) {
+                            var etype = "c";
+                            eid = eid / 10;
+                     }
+                     else {
+                            var etype = "e";
+                            eid = (eid - 1) / 10;
+                     }
                      $.ajax({
                             async:false,
-                            url: "{% url 'crm_get_addr' %}?term=" + ent_id + "&type=e",
+                            url: "{% url 'crm_get_addr' %}?term=" + eid + "&type=" + etype,
                             success: function(data) {
                                    entity_name = data.name
                                    if (data.lat && data.lon) {
@@ -83,7 +91,7 @@ $(document).bind('cbox_complete', function() {
                                                                map.addLayer(markers);
                                                                $.ajax({
                                                                       async:false,
-                                                                      url: "{% url 'crm_put_coords' %}?ent="+ ent_id +"&lat="+lat+"&lon="+lon+"&type=e",
+                                                                      url: "{% url 'crm_put_coords' %}?ent="+ eid +"&lat="+lat+"&lon="+lon+"&type=" + etype,
                                                                       success: function(data) {
                                                                       }
                                                                })

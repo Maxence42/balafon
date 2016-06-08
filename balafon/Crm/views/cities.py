@@ -76,19 +76,13 @@ def get_cities(request):
         if country_id == 0 or country_id is None:
             cities_queryset = models.City.objects.filter(name__icontains=term, geonames_valid=True)[:10]
         else:
-            if country_id == default_country.id:
-                cities_queryset = models.City.objects.filter(name__icontains=term, geonames_valid=True, country=country_name).exclude(parent__code='')[:10]
-            else:
-                cities_queryset = models.City.objects.filter(name__icontains=term, country=country_name, geonames_valid=True)[:10]
+            cities_queryset = models.City.objects.filter(name__icontains=term, country=country_name, geonames_valid=True)[:10]
 
     else:
         if country_id == 0 or country_id is None:
             cities_queryset = models.City.objects.filter(name__icontains=term, zip_code__icontains=zipcode, geonames_valid=True)[:10]
         else:
-            if country_id == default_country.id:
-                cities_queryset = models.City.objects.filter(name__icontains=term, zip_code__icontains=zipcode, geonames_valid=True, country=country_name).exclude(parent__code='')[:10]
-            else:
-                cities_queryset = models.City.objects.filter(name__icontains=term, country=country_name, zip_code__icontains=zipcode, geonames_valid=True)[:10]
+            cities_queryset = models.City.objects.filter(name__icontains=term, country=country_name, zip_code__icontains=zipcode, geonames_valid=True)[:10]
                 
     
 

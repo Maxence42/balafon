@@ -59,7 +59,7 @@ class SearchField(models.Model):
 class SearchResult(models.Model):
     """fields"""
     nb_results = models.IntegerField(_(u'Number of results'))
-    results = models.CharField(_(u'ID list of results'), max_length=10000)
+    results = models.CharField(_(u'ID list of results'), max_length=100000)
     
     class Meta:
         verbose_name = _(u'search result')

@@ -2,16 +2,24 @@
 """view and edit entities"""
 
 from datetime import date
+import hashlib
 import json
+import os
 import re
+import urllib
+import urllib2
 
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.messages import warning
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
+from django import template
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
 from coop_cms.utils import paginate
@@ -296,7 +304,7 @@ def get_addr(request):
         if address == "":
             address = entity.address
         city = entity.city.name
-        
+
     else:
         latitude = entity.entity.city.latitude
         longitude = entity.entity.city.longitude
@@ -312,8 +320,13 @@ def get_addr(request):
         if address == "":
             address = entity.entity.address
         city = entity.entity.city.name
+        
+    if type_ent == "e":
+        name = entity.name
+    else:
+        name = entity.lastname + " " + entity.firstname
     
-    return HttpResponse(json.dumps({'address': address, 'city': city, 'latitude': latitude, 'longitude': longitude, 'lat': lat, 'lon': lon, 'name': entity.name}), 'application/json')
+    return HttpResponse(json.dumps({'address': address, 'city': city, 'latitude': latitude, 'longitude': longitude, 'lat': lat, 'lon': lon, 'name': name}), 'application/json')
 
 
 @user_passes_test(can_access)

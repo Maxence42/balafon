@@ -42,10 +42,16 @@ $(document).bind('cbox_complete', function() {
                                    markers.addMarker(new OpenLayers.Marker(cproj,icon));
                                    map.setCenter(cproj, 17);
                             }
-                            else if (data.address) {
-                                   var address = data.address
-                            
-                                   address = address + ", " + data.city;
+                            else {
+                                   var address = ""
+                                   var exist_address = false
+                                   if (data.address) {
+                                          address = data.address + ", "
+                                          exist_address = true
+                                   }
+                                   
+                                   
+                                   address = address + data.city;
                                    latitude = data.latitude;
                                    longitude = data.longitude;
                                    
@@ -55,7 +61,7 @@ $(document).bind('cbox_complete', function() {
                                           url: "http://nominatim.openstreetmap.org/search?q="+address+"&format=jsonv2",
                                           success: function(data) {
                                                         
-                                                 if (data[0] != null) {
+                                                 if (data[0] != null && exist_address == true) {
                                                         lat = data[0].lat;
                                                         lon = data[0].lon;
                                                         

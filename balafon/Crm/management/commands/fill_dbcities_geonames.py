@@ -101,7 +101,7 @@ def fill_db():
                 tab.append(cname)
             zone = Zone.objects.get(name=dept)
 
-            city = City(name=cname, parent=zone, district_id = words[8], latitude = float(words[9]), longitude = float(words[10]), geonames_valid = True, country = 'France')
+            city = City(name=cname, parent=zone, district_id = words[8], latitude = float(words[9]), longitude = float(words[10]), geonames_valid = True, country = 'France', zip_code=words[1])
             city.save()
             count+=1
             if count%500 == 0:

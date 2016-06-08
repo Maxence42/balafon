@@ -606,6 +606,7 @@ class Contact(AddressModel):
     nickname = models.CharField(_(u'nickname'), max_length=200, blank=True, default=u'')
     
     photo = models.ImageField(_(u"photo"), blank=True, default=u"", upload_to=get_contact_photo_dir)
+    photo_url = models.CharField(_(u"photo url"), max_length=300, null=True)
     birth_date = models.DateField(_(u"birth date"), blank=True, default=None, null=True)
     job = models.CharField(_(u"job"), max_length=200, blank=True, default=u"")
     

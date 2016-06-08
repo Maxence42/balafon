@@ -2,6 +2,8 @@
 """contacts"""
 
 import json
+import hashlib
+import urllib
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import user_passes_test
@@ -298,3 +300,21 @@ def select_contact_and_redirect(request, view_name, template_name, choices=None)
 @popup_redirect
 def display_map(request, contact_id):
     return render(request, 'Crm/display_map.html', {'entity': contact_id, 'type': "c"})
+
+@user_passes_test(can_access)
+def import_gravatar(request, contact_id):
+    
+    contact = models.Contact.objects.get(id=contact_id)
+    try:
+        img_url = gravatar_url(contact.email)
+        contact.photo_url = img_url
+        contact.save()
+        
+    except UnicodeEncodeError:
+        pass
+        
+    return HttpResponseRedirect(reverse("crm_view_contact", args=[contact_id]))
+
+def gravatar_url(email, size=64):
+        default = "http://uwm.edu/libraries/wp-content/plugins/uwmpeople/images/profile-default.jpg"
+        return "https://www.gravatar.com/avatar/%s?%s" % (hashlib.md5(email.lower()).hexdigest(), urllib.urlencode({'d':default, 's':str(size)}))

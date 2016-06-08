@@ -266,8 +266,8 @@ class Command(BaseCommand):
             else:
                 print("Unknown name")
 
-        urllib.urlretrieve('http://download.geonames.org/export/zip/' + cntry + '.zip', '/Users/Maxence/Documents/' + cntry + '.zip')
-        zfile = zipfile.ZipFile('/Users/Maxence/Documents/' + cntry + '.zip','r')
+        urllib.urlretrieve('http://download.geonames.org/export/zip/' + cntry + '.zip', 'dev/balafon/balafon/Crm/fixtures/' + cntry + '.zip')
+        zfile = zipfile.ZipFile('dev/balafon/balafon/Crm/fixtures/' + cntry + '.zip','r')
         for i in zfile.namelist():
             if i== cntry + '.txt':
                 data = zfile.read(i)                   ## lecture du fichier compresse 
@@ -275,7 +275,7 @@ class Command(BaseCommand):
                 fp.write(data)                         ## ajout des donnees du fichier compresse dans le fichier local 
                 fp.close() 
         zfile.close()
-        os.remove('/Users/Maxence/Documents/' + cntry + '.zip')
+        os.remove('dev/balafon/balafon/Crm/fixtures/' + cntry + '.zip')
         
         choose = -1
         while choose != 0:        

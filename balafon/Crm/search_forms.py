@@ -1512,7 +1512,7 @@ class Geographic50SearchForm(BaseCitySearchForm):
         latmin = lat - (50/1.112) * 0.01
         lonmax = lon + 50 * 0.01
         lonmin = lon - 50 * 0.01
-        return (Q(entity__city__latitude__lt=latmax) & Q(entity__city__latitude__gt=latmin) & Q(entity__city__longitude__lt=lonmax) & Q(entity__city__longitude__gt=lonmin))
+        return ((Q(entity__city__latitude__lt=latmax) & Q(entity__city__latitude__gt=latmin) & Q(entity__city__longitude__lt=lonmax) & Q(entity__city__longitude__gt=lonmin)) | (Q(city__latitude__lt=latmax) & Q(city__latitude__gt=latmin) & Q(city__longitude__lt=lonmax) & Q(city__longitude__gt=lonmin)))
     
 class Geographic25SearchForm(BaseCitySearchForm):
     """within 25 kilometers"""
@@ -1538,8 +1538,8 @@ class Geographic25SearchForm(BaseCitySearchForm):
         latmin = lat - (25/1.112) * 0.01
         lonmax = lon + 25 * 0.01
         lonmin = lon - 25 * 0.01
-        return (Q(entity__city__latitude__lt=latmax) & Q(entity__city__latitude__gt=latmin) & Q(entity__city__longitude__lt=lonmax) & Q(entity__city__longitude__gt=lonmin))
-    
+        return ((Q(entity__city__latitude__lt=latmax) & Q(entity__city__latitude__gt=latmin) & Q(entity__city__longitude__lt=lonmax) & Q(entity__city__longitude__gt=lonmin)) | (Q(city__latitude__lt=latmax) & Q(city__latitude__gt=latmin) & Q(city__longitude__lt=lonmax) & Q(city__longitude__gt=lonmin)))    
+
 class Geographic100SearchForm(BaseCitySearchForm):
     """within 100 kilometers"""
     name = 'geographic100'
@@ -1564,7 +1564,7 @@ class Geographic100SearchForm(BaseCitySearchForm):
         latmin = lat - (100/1.112) * 0.01
         lonmax = lon + 100 * 0.01
         lonmin = lon - 100 * 0.01
-        return (Q(entity__city__latitude__lt=latmax) & Q(entity__city__latitude__gt=latmin) & Q(entity__city__longitude__lt=lonmax) & Q(entity__city__longitude__gt=lonmin))
+        return ((Q(entity__city__latitude__lt=latmax) & Q(entity__city__latitude__gt=latmin) & Q(entity__city__longitude__lt=lonmax) & Q(entity__city__longitude__gt=lonmin)) | (Q(city__latitude__lt=latmax) & Q(city__latitude__gt=latmin) & Q(city__longitude__lt=lonmax) & Q(city__longitude__gt=lonmin)))
 
 
 class GeonamesValidForm(YesNoSearchFieldForm):
@@ -1578,3 +1578,15 @@ class GeonamesValidForm(YesNoSearchFieldForm):
             return Q(entity__city__geonames_valid=False)
         else:
             return Q(entity__city__geonames_valid=True)
+        
+class ExistPictureForm(YesNoSearchFieldForm):
+    """by existing picture"""
+    name = 'exist_picture'
+    label = _(u'Has a picture ?')
+        
+    def get_lookup(self):
+        """lookup"""
+        if not self.is_yes():
+            return (Q(photo="") & Q(photo_url=None))
+        else:
+            return (~Q(photo="") | ~Q(photo_url=None))

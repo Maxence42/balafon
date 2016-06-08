@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^contacts-admin/$', views.contacts_admin, name='search_contacts_admin'),
     url(r'^export_to_pdf/$', views.export_to_pdf, name='search_export_to_pdf'),
     url(r'^search-map/(?P<search_id>\d+)/$', views.display_map, name='search_display_map'),
+    url(r'^search-gravatar/(?P<search_id>\d+)/$', views.import_gravatar, name='search_import_gravatar'),
 ]

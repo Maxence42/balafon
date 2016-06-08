@@ -9,7 +9,7 @@
     <a class="header-link" href="{% url 'crm_view_contact' contact.id %}">
       <span class="glyphicon glyphicon-user"></span>
       <div class="logo-container">
-        <img {{contact.get_photo_center_style}} src="{{contact.get_safe_photo}}"/>
+        <img {{contact.get_photo_center_style}} src="{% if contact.photo_url %} {{contact.photo_url}} {% else %} {{contact.get_safe_photo}} {% endif %}"/>
       </div>
     </a>
     <div style="display: inline-block; vertical-align: middle;">
@@ -149,6 +149,7 @@
     <li><a class="colorbox-form" href="{% url 'crm_edit_contact' contact.id %}">{% trans "Edit" %}</a></li>
     <li><a class="colorbox-form" href="{% url 'crm_delete_contact' contact.id%}">{% trans "Delete" %}</a></li>
     <li><a class="colorbox-form" href="{% url 'crm_change_contact_entity' contact.id%}">{% trans "Reassign" %}</a></li>
+    {% if contact.email %} <li><a href="{% url 'crm_import_gravatar' contact.id%}">{% trans "Import image from gravatar" %}</a></li> {% endif %}
 {% endblock %}
 
 {% block section_favorite %}

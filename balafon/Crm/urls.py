@@ -57,6 +57,7 @@ urlpatterns = [
     url(r'^contact-name/(?P<contact_id>.+)/$', contacts.get_contact_name, name='crm_get_contact_name'),
     url(r'^contacts/list/$', contacts.get_contacts, name='crm_get_contacts'),
     url(r'^contact-id/$', contacts.get_contact_id, name='crm_get_contact_id'),
+    url(r'^import_gravatar/(?P<contact_id>\d+)/$', contacts.import_gravatar, name='crm_import_gravatar'),
 
     # actions
     url(
