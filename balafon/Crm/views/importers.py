@@ -645,7 +645,7 @@ def confirm_mail_delete(request):
                 print(mail_address)
                 ct = models.Contact.objects.filter(email=mail_address)
                 for contact in ct:
-                    contact.email = ""
+                    contact.valid_email = False
                     contact.save()
                 err = models.Error_MailAddress.objects.filter(address=mail_address)
                 for el in err:

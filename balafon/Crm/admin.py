@@ -96,7 +96,7 @@ class SubscriptionInline(admin.TabularInline):
 
 class ContactAdmin(admin.ModelAdmin):
     """custom admin view"""
-    list_display = ['lastname', 'firstname', 'entity', 'email', 'city', 'latitude', 'longitude', 'photo_url']
+    list_display = ['lastname', 'firstname', 'entity', 'email', 'city', 'valid_email']
     search_fields = ['lastname']
     raw_id_admin = ('entity',)
     inlines = (SubscriptionInline,)

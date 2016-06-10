@@ -621,6 +621,7 @@ class Contact(AddressModel):
     phone = models.CharField(_('phone'), max_length=200, blank=True, default=u'')
     mobile = models.CharField(_('mobile'), max_length=200, blank=True, default=u'')
     email = models.EmailField(_('email'), blank=True, default=u'')
+    valid_email = models.BooleanField(_('valid email address'), default=True)
     
     uuid = models.CharField(max_length=100, blank=True, default='', db_index=True)
     
