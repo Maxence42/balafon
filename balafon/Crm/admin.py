@@ -221,6 +221,7 @@ class SpecialCaseCityAdmin(admin.ModelAdmin):
 
 admin.site.register(models.SpecialCaseCity, SpecialCaseCityAdmin)
 
+
 class MailProviderAdmin(admin.ModelAdmin):
     list_display = ['name', 'imapServer', 'port', ]
     list_filter = ['name']
@@ -228,9 +229,17 @@ class MailProviderAdmin(admin.ModelAdmin):
 
 admin.site.register(models.MailProvider, MailProviderAdmin)
 
+
 class MailImportAdmin(admin.ModelAdmin):
     list_display = ['mail_address', 'date', 'content']
     list_filter = ['mail_address']
     search_fields = ['mail_address']
 
 admin.site.register(models.Mail_Import, MailImportAdmin)
+
+
+class ErrorMailAddressAdmin(admin.ModelAdmin):
+    list_display = ['address', 'date', 'error']
+    search_fields = ['address']
+
+admin.site.register(models.Error_MailAddress, ErrorMailAddressAdmin)

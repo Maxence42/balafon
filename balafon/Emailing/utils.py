@@ -168,6 +168,8 @@ def send_newsletter(emailing, max_nb):
 
             if getattr(settings, 'COOP_CMS_REPLY_TO', None):
                 headers['Reply-To'] = settings.COOP_CMS_REPLY_TO
+                
+            headers['BALAFON-MSG-ID'] = "1234"
 
             email = EmailMultiAlternatives(
                 context['title'],

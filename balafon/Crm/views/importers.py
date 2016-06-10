@@ -63,7 +63,10 @@ def mail_contacts_import(request):
             if numprov and addr and passwd:
                 prov = models.MailProvider.objects.get(id=numprov)
                 exped = ""
-                mail = imaplib.IMAP4_SSL(prov.imapServer, prov.port)
+                if prov.port == 993:
+                    mail = imaplib.IMAP4_SSL(prov.imapServer, prov.port)
+                else:
+                    mail = imaplib.IMAP4(prov.imapServer, prov.port)
                 mail.login(addr, passwd)
                 mail.select("inbox")
                 
@@ -392,16 +395,12 @@ def _set_contact_fields(contact, contact_data, fields, complex_fields, default_d
         contact.city = resolve_city(
             contact_data['city'],
             contact_data['zip_code'],
-            contact_data['country'],
-            default_department
         )
 
     if contact_data['entity.city']:
         contact.entity.city = resolve_city(
             contact_data['entity.city'],
             contact_data['entity.zip_code'],
-            contact_data['entity.country'],
-            default_department
         )
 
     if contact_data['role']:
@@ -634,3 +633,24 @@ def confirm_mail_import(request, import_id):
             else:
                 exped.append(w)
         return render(request, 'Crm/confirm_mail_import.html', {'exped': exped, 'nb': 0})
+
+
+@user_passes_test(can_access)
+def confirm_mail_delete(request):
+    """view"""
+    if request.method == 'POST':
+        for i in range(50):
+            if request.POST.get("check" + `i`) == "on":
+                mail_address = request.POST.get("mail" + `i`)
+                print(mail_address)
+                ct = models.Contact.objects.filter(email=mail_address)
+                for contact in ct:
+                    contact.email = ""
+                    contact.save()
+                err = models.Error_MailAddress.objects.filter(address=mail_address)
+                for el in err:
+                    el.delete()
+        return HttpResponseRedirect(reverse('crm_view_entities_list'))
+    else:
+        content = models.Error_MailAddress.objects.all()
+        return render(request, 'Crm/confirm_mail_delete.html', {'addresses': content,})

@@ -196,6 +196,7 @@ urlpatterns = [
     url(r'^contacts-import/new/$', importers.new_contacts_import, name='crm_new_contacts_import'),
     url(r'^mail-import/new/$', importers.mail_contacts_import, name='crm_mail_contacts_import'),
     url(r'^confirm-mail-import/(?P<import_id>\d+)/$', importers.confirm_mail_import, name='crm_confirm_mail_import'),
+    url(r'^mail-delete/$', importers.confirm_mail_delete, name='crm_confirm_mail_delete'),
     url(
         r'^contacts-import/(?P<import_id>\d+)/$',
         importers.confirm_contacts_import,

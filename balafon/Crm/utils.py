@@ -77,43 +77,24 @@ def format_city_name(city_name):
     return city_name
 
 
-def resolve_city(city_name, zip_code, country='', default_department=''):
+def resolve_city(city_name, zip_code):
     """get a city form a name and zip code"""
-    country = country.strip()
     city_name = format_city_name(city_name)
-    default_country = crm_settings.get_default_country()
-    foreign_city = bool(country) and (country != default_country)
-    if foreign_city:
-        zone_type = models.ZoneType.objects.get(type='country')
-        queryset = models.Zone.objects.filter(type=zone_type)
-        queryset = filter_icontains_unaccent(queryset, '"Crm_zone"."name"', country)
-        country_count = queryset.count()
-        if country_count == 0:
-            parent = models.Zone.objects.create(name=country.capitalize(), type=zone_type)
-        else:
-            parent = queryset[0]
-            if country_count > 1:
-                logger_message = u"{0} different zones for '{1}'".format(country_count, country)
-                logger.warning(logger_message)
-    else:
-        code = zip_code[:2] or default_department
-        try:
-            parent = models.Zone.objects.get(code=code)
-        except models.Zone.DoesNotExist:
-            parent = None
-    
-    queryset = models.City.objects.filter(parent=parent)
-    queryset = filter_icontains_unaccent(queryset, '"Crm_city"."name"', city_name)
-    cities_count = queryset.count()
-    if cities_count:
-        if cities_count > 1:
-            cities_list = []
-            for c in queryset:
-                cities_list.append(c.name)
-            results = difflib.get_close_matches(city_name, cities_list)
-        return queryset.get(results[0])
-    else:
-        return models.City.objects.create(name=city_name, parent=parent)
+    if models.City.objects.filter(name__icontains=city_name):
+        cities = models.City.objects.filter(name=city_name)
+        for c in cities:
+            if c.name == city_name:
+                return c
+    if models.City.objects.filter(zip_code__icontains=zip_code[:2]):
+        cities = models.City.objects.filter(zip_code__icontains=zip_code[:2])
+        cts = []
+        for c in cities:
+            cts.append(c.name)
+        results = difflib.get_close_matches(city_name, cts, cutoff=0.8)
+        if results:
+            return cities.get(name=results[0])
+    zone = models.Zone.objects.get(code=zip_code[:2])
+    return City(name=city_name, parent=zone)
 
 
 def get_actions_by_set(actions_qs, max_nb=0, action_set_list=None):

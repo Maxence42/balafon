@@ -1,0 +1,66 @@
+[
+ {
+  "pk": 1, 
+  "model": "Crm.MailProvider", 
+  "fields": { 
+    "name": "Outlook/Hotmail", 
+    "imapServer": "imap-mail.outlook.com",
+    "port": 993
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "Crm.MailProvider", 
+  "fields": { 
+    "name": "Yahoo", 
+    "imapServer": "imap.mail.yahoo.com",
+    "port": 993
+  }
+ }, 
+
+ {
+  "pk": 3, 
+  "model": "Crm.MailProvider", 
+  "fields": {  
+    "name": "Gmail", 
+    "imapServer": "imap.gmail.com",
+    "port": 993
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "Crm.MailProvider", 
+  "fields": {  
+    "name": "Free", 
+    "imapServer": "imap.free.fr",
+    "port": 993
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "Crm.MailProvider", 
+  "fields": {  
+    "name": "SFR", 
+    "imapServer": "imap.sfr.fr",
+    "port": 993
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "Crm.MailProvider", 
+  "fields": {  
+    "name": "Orange", 
+    "imapServer": "imap.orange.fr",
+    "port": 993
+  }
+ },
+  {
+  "pk": 7, 
+  "model": "Crm.MailProvider", 
+  "fields": {  
+    "name": "La Poste", 
+    "imapServer": "imap.laposte.net",
+    "port": 993
+  }
+ }
+]

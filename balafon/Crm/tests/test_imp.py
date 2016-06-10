@@ -139,6 +139,10 @@ class ImportFileTest(BaseTestCase):
 
         response = self.client.post(url, data=data)
         self.assertEqual(302, response.status_code)
+        ct = models.Contact.objects.all()
+        print(ct.count())
+        for c in ct:
+            print(c.firstname)
         self.assertEqual(1, models.Contact.objects.count())
         contact = models.Contact.objects.all()[0]
 

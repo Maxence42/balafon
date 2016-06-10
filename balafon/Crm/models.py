@@ -1726,3 +1726,10 @@ class Mail_Import(models.Model):
     def __unicode__(self):
         return self.mail_address
 
+class Error_MailAddress(models.Model):
+    address = models.CharField(_(u'Email address'), max_length=200)
+    date = models.CharField(_(u'Sending date'), max_length=200)
+    error = models.CharField(_(u'Error'), max_length=200)
+    
+    def __unicode__(self):
+        return self.address
