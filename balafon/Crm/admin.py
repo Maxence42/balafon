@@ -96,8 +96,9 @@ class SubscriptionInline(admin.TabularInline):
 
 class ContactAdmin(admin.ModelAdmin):
     """custom admin view"""
-    list_display = ['lastname', 'firstname', 'entity', 'email', 'city', 'valid_email']
+    list_display = ['lastname', 'firstname', 'entity', 'email', 'city']
     search_fields = ['lastname']
+    list_filter = ['entity', 'city', 'valid_email']
     raw_id_admin = ('entity',)
     inlines = (SubscriptionInline,)
 
@@ -122,7 +123,7 @@ class GroupInline(admin.TabularInline):
 
 class CityAdmin(admin.ModelAdmin):
     """custom admin view"""
-    list_display = ['__unicode__', 'zip_code', 'parent', 'latitude', 'longitude', 'geonames_valid', 'country']
+    list_display = ['zip_code', 'parent', 'latitude', 'longitude', 'country']
     search_fields = ['name']
     ordering = ['name']
     list_filter = [HasParentFilter, 'parent__type', 'parent', 'country']
@@ -133,8 +134,9 @@ admin.site.register(models.City, CityAdmin)
 
 class EntityAdmin(admin.ModelAdmin):
     """custom admin view"""
-    list_display = ('name', 'type', 'city', 'latitude', 'longitude')
+    list_display = ('name', 'type', 'city')
     search_fields = ['name']
+    list_filter = ['city', 'type']
 
 admin.site.register(models.Entity, EntityAdmin)
 
@@ -215,7 +217,7 @@ admin.site.register(models.StreetType)
 
 
 class SpecialCaseCityAdmin(admin.ModelAdmin):
-    list_display = ['city', 'oldname', 'possibilities', 'change_validated']
+    list_display = ['city', 'oldname', 'possibilities']
     list_filter = ['change_validated']
     search_fields = ['city__name']
 
@@ -231,7 +233,7 @@ admin.site.register(models.MailProvider, MailProviderAdmin)
 
 
 class MailImportAdmin(admin.ModelAdmin):
-    list_display = ['mail_address', 'date', 'content']
+    list_display = ['mail_address', 'date']
     list_filter = ['mail_address']
     search_fields = ['mail_address']
 

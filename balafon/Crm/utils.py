@@ -93,7 +93,8 @@ def resolve_city(city_name, zip_code):
         results = difflib.get_close_matches(city_name, cts, cutoff=0.8)
         if results:
             return cities.get(name=results[0])
-    zone = models.Zone.objects.get(code=zip_code[:2])
+    if models.Zone.objects.get(code=zip_code[:2]):
+        zone = models.Zone.objects.get(code=zip_code[:2])
     return City(name=city_name, parent=zone)
 
 

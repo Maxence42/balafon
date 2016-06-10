@@ -63,4 +63,13 @@
     "port": 993
   }
  }
+ {
+  "pk": 8, 
+  "model": "Crm.MailProvider", 
+  "fields": {  
+    "name": "Apidev/AlwaysData", 
+    "imapServer": "imap-apidev.alwaysdata.net",
+    "port": 143
+  }
+ }
 ]

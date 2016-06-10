@@ -244,27 +244,45 @@ class Command(BaseCommand):
                 m.country = m.parent.parent.parent.name
                 m.save()
         
-        cntry = ''
-        while cntry == '':
-            country_name = raw_input("\nEnter the name of the country :\n")
-            if country_name == 'Italie':
+        print("\nChoose the country to import :")
+        print("\n\t[0] Quit")
+        print("\t[1] Italy")
+        print("\t[2] United Kingdom")
+        print("\t[3] Spain")
+        print("\t[4] Germany")
+        print("\t[5] Belgium")
+        print("\t[6] Luxembourg")
+        print("\t[7] Switzerland")
+        print("\t[8] France")
+        choice = -1
+        while choice > 8 or choice < 0:
+            choice = int(raw_input("\nEnter the value of the country :\n"))
+            if choice == 1:
                 cntry = 'IT'
-            elif country_name == 'Royaume-Uni':
+                country_name = "Italie"
+            elif choice == 2:
                 cntry = 'GB'
-            elif country_name == 'Espagne':
+                country_name = 'Royaume-Uni'
+            elif choice == 3:
                 cntry = 'ES'
-            elif country_name == 'Allemagne':
+                country_name = 'Espagne'
+            elif choice == 4:
                 cntry = 'DE'
-            elif country_name == 'Belgique':
+                country_name = 'Allemagne'
+            elif choice == 5:
                 cntry = 'BE'
-            elif country_name == 'Luxembourg':
+                country_name = 'Belgique'
+            elif choice == 6:
                 cntry = 'LU'
-            elif country_name == 'Suisse':
+                country_name = 'Luxembourg'
+            elif choice == 7:
                 cntry = 'CH'
-            elif country_name == 'France':
+                country_name = 'Suisse'
+            elif choice == 8:
                 cntry = 'FR'
-            else:
-                print("Unknown name")
+                country_name = 'France'
+            elif choice == 0:
+                return
 
         urllib.urlretrieve('http://download.geonames.org/export/zip/' + cntry + '.zip', 'dev/balafon/balafon/Crm/fixtures/' + cntry + '.zip')
         zfile = zipfile.ZipFile('dev/balafon/balafon/Crm/fixtures/' + cntry + '.zip','r')
