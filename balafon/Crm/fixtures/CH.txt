@@ -3724,9 +3724,9 @@ CH	1176	St-Livres	Canton de Vaud	VD	District de Morges	2227	Saint-Livres	5435	46
 CH	1187	St-Oyens	Canton de Vaud	VD	District de Morges	2227	Saint-Oyens	5436	46.4942	6.2974	6
 CH	1188	Gimel	Canton de Vaud	VD	District de Morges	2227	Gimel	5428	46.5212	6.2886	6
 CH	1189	Saubraz	Canton de Vaud	VD	District de Morges	2227	Saubraz	5437	46.519	6.3256	6
-CH	1300	Eclépens Clinique	Canton de Vaud	VD	District de Morges	2227	Eclépens	5482	46.6515	6.5429	4
-CH	1300	Eclépens Centre Courrier	Canton de Vaud	VD	District de Morges	2227	Eclépens	5482	46.6515	6.5429	4
 CH	1300	Eclépens CC AP	Canton de Vaud	VD	District de Morges	2227	Eclépens	5482	46.6515	6.5429	4
+CH	1300	Eclépens Centre Courrier	Canton de Vaud	VD	District de Morges	2227	Eclépens	5482	46.6515	6.5429	4
+CH	1300	Eclépens Clinique	Canton de Vaud	VD	District de Morges	2227	Eclépens	5482	46.6515	6.5429	4
 CH	1300	Eclépens SAB	Canton de Vaud	VD	District de Morges	2227	Eclépens	5482	46.6515	6.5429	4
 CH	1300	Eclépens CC Dépôt	Canton de Vaud	VD	District de Morges	2227	Eclépens	5482	46.6515	6.5429	4
 CH	1304	Allens	Canton de Vaud	VD	District de Morges	2227	Cossonay	5477	46.5981	6.5094	6

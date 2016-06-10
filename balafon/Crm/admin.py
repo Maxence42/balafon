@@ -123,7 +123,7 @@ class GroupInline(admin.TabularInline):
 
 class CityAdmin(admin.ModelAdmin):
     """custom admin view"""
-    list_display = ['zip_code', 'parent', 'latitude', 'longitude', 'country']
+    list_display = ['name', 'zip_code', 'parent', 'latitude', 'longitude', 'country']
     search_fields = ['name']
     ordering = ['name']
     list_filter = [HasParentFilter, 'parent__type', 'parent', 'country']

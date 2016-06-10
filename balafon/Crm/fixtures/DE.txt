@@ -13410,19 +13410,19 @@ DE	66806	Ensdorf	Saarland	SL		00	Saarlouis	10044	49.3	6.7833
 DE	66809	Nalbach	Saarland	SL		00	Saarlouis	10044	49.3833	6.7833	
 DE	66822	Lebach	Saarland	SL		00	Saarlouis	10044	49.4252	6.9219	
 DE	66839	Schmelz	Saarland	SL		00	Saarlouis	10044	49.4333	6.85	
-DE	01067	Dresden Innere Altstadt	Sachsen	SN		00	Dresden, Stadt	14612	51.0507	13.7366	
-DE	01067	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.0547	13.7269	
 DE	01067	Dresden Friedrichstadt	Sachsen	SN		00	Dresden, Stadt	14612	51.0587	13.7172	
+DE	01067	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.0547	13.7269	
+DE	01067	Dresden Innere Altstadt	Sachsen	SN		00	Dresden, Stadt	14612	51.0507	13.7366	
 DE	01069	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.043	13.7373	
 DE	01097	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.0714	13.7399	
 DE	01099	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.0783	13.8051	
-DE	01108	Weixdorf	Sachsen	SN		00	Dresden, Stadt	14612	51.1481	13.7983	
 DE	01108	Marsdorf	Sachsen	SN		00	Dresden, Stadt	14612	51.1634	13.7666	
 DE	01108	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.1557	13.7825	
+DE	01108	Weixdorf	Sachsen	SN		00	Dresden, Stadt	14612	51.1481	13.7983	
+DE	01109	Klotzsche	Sachsen	SN		00	Dresden, Stadt	14612	51.1105	13.7686	
+DE	01109	Wilschdorf	Sachsen	SN		00	Dresden, Stadt	14612	51.122	13.7218	
 DE	01109	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.1164	13.7468	
 DE	01109	Hellerau	Sachsen	SN		00	Dresden, Stadt	14612	51.1167	13.75	
-DE	01109	Wilschdorf	Sachsen	SN		00	Dresden, Stadt	14612	51.122	13.7218	
-DE	01109	Klotzsche	Sachsen	SN		00	Dresden, Stadt	14612	51.1105	13.7686	
 DE	01127	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.079	13.7208	
 DE	01129	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.0967	13.736	
 DE	01139	Dresden	Sachsen	SN		00	Dresden, Stadt	14612	51.0836	13.6981	
@@ -13632,16 +13632,16 @@ DE	02747	Herrnhut	Sachsen	SN		00	Görlitz	14626	51.0167	14.75
 DE	02747	Berthelsdorf	Sachsen	SN		00	Görlitz	14626	51.0167	14.764	
 DE	02747	Großhennersdorf	Sachsen	SN		00	Görlitz	14626	50.9833	14.8	
 DE	02748	Bernstadt auf dem Eigen	Sachsen	SN		00	Görlitz	14626	51.05	14.85	
-DE	02763	Bertsdorf-Hörnitz	Sachsen	SN		00	Görlitz	14626	50.8859	14.737	
 DE	02763	Mittelherwigsdorf	Sachsen	SN		00	Görlitz	14626	50.9167	14.7667	
+DE	02763	Bertsdorf-Hörnitz	Sachsen	SN		00	Görlitz	14626	50.8859	14.737	
 DE	02763	Zittau	Sachsen	SN		00	Görlitz	14626	50.9078	14.8011	
 DE	02779	Großschönau	Sachsen	SN		00	Görlitz	14626	50.9	14.6833	
 DE	02779	Hainewalde	Sachsen	SN		00	Görlitz	14626	50.9167	14.7	
 DE	02782	Seifhennersdorf	Sachsen	SN		00	Görlitz	14626	50.9333	14.6167	
 DE	02785	Olbersdorf	Sachsen	SN		00	Görlitz	14626	50.873	14.7704	
-DE	02788	Hirschfelde	Sachsen	SN		00	Landkreis Löbau-Zittau		50.9669	14.8714	
-DE	02788	Hirschfelde Dittelsdorf	Sachsen	SN		00	Landkreis Löbau-Zittau		50.95	14.8833	
 DE	02788	Schlegel	Sachsen	SN		00	Landkreis Löbau-Zittau		50.9833	14.8833	
+DE	02788	Hirschfelde Dittelsdorf	Sachsen	SN		00	Landkreis Löbau-Zittau		50.95	14.8833	
+DE	02788	Hirschfelde	Sachsen	SN		00	Landkreis Löbau-Zittau		50.9669	14.8714	
 DE	02791	Oderwitz	Sachsen	SN		00	Görlitz	14626	50.9583	14.7083	
 DE	02794	Leutersdorf	Sachsen	SN		00	Görlitz	14626	50.95	14.65	
 DE	02796	Jonsdorf	Sachsen	SN		00	Görlitz	14626	50.85	14.7	
@@ -15464,11 +15464,11 @@ DE	04618	Göpfersdorf	Thüringen	TH		00	Altenburger Land	16077	50.9127	12.599
 DE	04618	Frohnsdorf	Thüringen	TH		00	Altenburger Land	16077	50.9359	12.5858	
 DE	04618	Ziegelheim	Thüringen	TH		00	Altenburger Land	16077	50.9259	12.5534	
 DE	04618	Langenleuba-Niederhain	Thüringen	TH		00	Altenburger Land	16077	50.9591	12.5958	
+DE	04626	Altkirchen	Thüringen	TH		00	Altenburger Land	16077	50.942	12.3506	
 DE	04626	Göllnitz	Thüringen	TH		00	Altenburger Land	16077	50.9473	12.3243	
 DE	04626	Heukewalde	Thüringen	TH		00	Altenburger Land	16077	50.8384	12.2724	
-DE	04626	Dobitschen	Thüringen	TH		00	Altenburger Land	16077	50.956	12.2817	
 DE	04626	Nöbdenitz	Thüringen	TH		00	Altenburger Land	16077	50.8771	12.2849	
-DE	04626	Altkirchen	Thüringen	TH		00	Altenburger Land	16077	50.942	12.3506	
+DE	04626	Dobitschen	Thüringen	TH		00	Altenburger Land	16077	50.956	12.2817	
 DE	04626	Vollmershain	Thüringen	TH		00	Altenburger Land	16077	50.8552	12.2884	
 DE	04626	Jonaswalde	Thüringen	TH		00	Altenburger Land	16077	50.8392	12.2879	
 DE	04626	Drogen	Thüringen	TH		00	Altenburger Land	16077	50.9176	12.3163	
@@ -15509,9 +15509,9 @@ DE	06577	Gorsleben	Thüringen	TH		00	Kyffhäuserkreis	16065	51.2667	11.1833
 DE	06577	Hemleben	Thüringen	TH		00	Kyffhäuserkreis	16065	51.25	11.2167	
 DE	06577	Heldrungen	Thüringen	TH		00	Kyffhäuserkreis	16065	51.3	11.2167	
 DE	06577	Hauteroda	Thüringen	TH		00	Kyffhäuserkreis	16065	51.2667	11.2833	
-DE	06578	Oldisleben	Thüringen	TH		00	Sömmerda	16068	51.3	11.1667	
-DE	06578	Kannawurf	Thüringen	TH		00	Sömmerda	16068	51.2667	11.1333	
 DE	06578	Bilzingsleben	Thüringen	TH		00	Sömmerda	16068	51.2833	11.0667	
+DE	06578	Kannawurf	Thüringen	TH		00	Sömmerda	16068	51.2667	11.1333	
+DE	06578	Oldisleben	Thüringen	TH		00	Sömmerda	16068	51.3	11.1667	
 DE	07318	Saalfeld/Saale	Thüringen	TH		00	Saalfeld-Rudolstadt	16073	50.6516	11.3764	
 DE	07318	Wittgendorf	Thüringen	TH		00	Saalfeld-Rudolstadt	16073	50.6	11.2333	
 DE	07318	Arnsgereuth	Thüringen	TH		00	Saalfeld-Rudolstadt	16073	50.6167	11.3167	
@@ -15552,13 +15552,13 @@ DE	07381	Döbritz	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.7	11.65
 DE	07381	Oberoppurg	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.7	11.6833	
 DE	07387	Krölpa	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6833	11.5333	
 DE	07387	Lausnitz bei Pößneck	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6667	11.5	
+DE	07389	Knau	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.65	11.7333	
 DE	07389	Grobengereuth	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6667	11.6667	
 DE	07389	Schmorda	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.65	11.5833	
-DE	07389	Gertewitz	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6833	11.65	
 DE	07389	Quaschwitz	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6833	11.7	
-DE	07389	Gössitz	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6167	11.5833	
-DE	07389	Knau	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.65	11.7333	
+DE	07389	Gertewitz	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6833	11.65	
 DE	07389	Keila	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.65	11.6667	
+DE	07389	Gössitz	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6167	11.5833	
 DE	07389	Ranis	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.65	11.55	
 DE	07389	Bucha	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.6333	11.7	
 DE	07389	Seisla	Thüringen	TH		00	Saale-Orla-Kreis	16075	50.65	11.5333	
@@ -15620,12 +15620,12 @@ DE	07570	Steinsdorf	Thüringen	TH		00	Greiz	16076	50.75	12.05
 DE	07570	Weida	Thüringen	TH		00	Greiz	16076	50.7788	12.0592	
 DE	07570	Harth-Pöllnitz Neundorf	Thüringen	TH		00	Greiz	16076	50.769	11.9812	
 DE	07570	Teichwitz	Thüringen	TH		00	Greiz	16076	50.75	12.0833	
-DE	07580	Paitzdorf	Thüringen	TH		00	Greiz	16076	50.85	12.2167	
 DE	07580	Hilbersdorf	Thüringen	TH		00	Greiz	16076	50.8167	12.15	
-DE	07580	Gauern	Thüringen	TH		00	Greiz	16076	50.7833	12.2	
+DE	07580	Paitzdorf	Thüringen	TH		00	Greiz	16076	50.85	12.2167	
 DE	07580	Linda bei Weida	Thüringen	TH		00	Greiz	16076	50.8	12.2	
-DE	07580	Großenstein	Thüringen	TH		00	Greiz	16076	50.9	12.2	
+DE	07580	Gauern	Thüringen	TH		00	Greiz	16076	50.7833	12.2	
 DE	07580	Rückersdorf	Thüringen	TH		00	Greiz	16076	50.8167	12.2167	
+DE	07580	Großenstein	Thüringen	TH		00	Greiz	16076	50.9	12.2	
 DE	07580	Ronneburg	Thüringen	TH		00	Greiz	16076	50.85	12.1982	
 DE	07580	Reichstädt	Thüringen	TH		00	Greiz	16076	50.925	12.235	
 DE	07580	Seelingstädt	Thüringen	TH		00	Greiz	16076	50.7833	12.25	
@@ -15718,12 +15718,12 @@ DE	07751	Milda	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.85	11.4667
 DE	07751	Rothenstein	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.85	11.6	
 DE	07751	Löberschütz	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.9667	11.7	
 DE	07751	Sulza	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.8667	11.6167	
-DE	07768	Freienorla	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.7667	11.55	
 DE	07768	Bibra	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.8	11.55	
-DE	07768	Kleineutersdorf	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.7833	11.5833	
+DE	07768	Freienorla	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.7667	11.55	
 DE	07768	Großeutersdorf	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.7833	11.5667	
-DE	07768	Gumperda	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.8167	11.5333	
+DE	07768	Kleineutersdorf	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.7833	11.5833	
 DE	07768	Eichenberg	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.8	11.5333	
+DE	07768	Gumperda	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.8167	11.5333	
 DE	07768	Lindig	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.7833	11.6	
 DE	07768	Seitenroda	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.8	11.6167	
 DE	07768	Altenberga	Thüringen	TH		00	Saale-Holzland-Kreis	16074	50.8333	11.5333	
@@ -15860,9 +15860,9 @@ DE	37308	Bodenrode-Westhausen	Thüringen	TH		00	Eichsfeld	16061	51.4	10.2
 DE	37308	Krombach	Thüringen	TH		00	Eichsfeld	16061	51.3	10.1333	
 DE	37308	Glasehausen	Thüringen	TH		00	Eichsfeld	16061	51.45	10.1667	
 DE	37308	Steinbach	Thüringen	TH		00	Eichsfeld	16061	51.4167	10.2167	
-DE	37318	Lindewerra	Thüringen	TH		00	Eichsfeld	16061	51.3167	9.95	
-DE	37318	Mackenrode	Thüringen	TH		00	Eichsfeld	16061	51.3	10.0667	
 DE	37318	Fretterode	Thüringen	TH		00	Eichsfeld	16061	51.3167	10	
+DE	37318	Mackenrode	Thüringen	TH		00	Eichsfeld	16061	51.3	10.0667	
+DE	37318	Lindewerra	Thüringen	TH		00	Eichsfeld	16061	51.3167	9.95	
 DE	37318	Kirchgandern	Thüringen	TH		00	Eichsfeld	16061	51.3667	9.95	
 DE	37318	Uder	Thüringen	TH		00	Eichsfeld	16061	51.3667	10.0833	
 DE	37318	Asbach-Sickenberg	Thüringen	TH		00	Eichsfeld	16061	51.2833	10.025	
@@ -16196,11 +16196,11 @@ DE	99438	Buchfart	Thüringen	TH		00	Weimarer Land	16071	50.9167	11.3333
 DE	99438	Oettern	Thüringen	TH		00	Weimarer Land	16071	50.9333	11.35	
 DE	99438	Bad Berka	Thüringen	TH		00	Weimarer Land	16071	50.9	11.2833	
 DE	99438	Troistedt	Thüringen	TH		00	Weimarer Land	16071	50.9333	11.25	
-DE	99439	Wohlsborn	Thüringen	TH		00	Weimarer Land	16071	51.0333	11.3667	
-DE	99439	Hottelstedt	Thüringen	TH		00	Weimarer Land	16071	51.0333	11.2333	
-DE	99439	Vippachedelhausen	Thüringen	TH		00	Weimarer Land	16071	51.0833	11.2	
-DE	99439	Schwerstedt	Thüringen	TH		00	Weimarer Land	16071	51.0667	11.2833	
 DE	99439	Heichelheim	Thüringen	TH		00	Weimarer Land	16071	51.05	11.3167	
+DE	99439	Hottelstedt	Thüringen	TH		00	Weimarer Land	16071	51.0333	11.2333	
+DE	99439	Wohlsborn	Thüringen	TH		00	Weimarer Land	16071	51.0333	11.3667	
+DE	99439	Schwerstedt	Thüringen	TH		00	Weimarer Land	16071	51.0667	11.2833	
+DE	99439	Vippachedelhausen	Thüringen	TH		00	Weimarer Land	16071	51.0833	11.2	
 DE	99439	Ettersburg	Thüringen	TH		00	Weimarer Land	16071	51.05	11.2833	
 DE	99439	Berlstedt	Thüringen	TH		00	Weimarer Land	16071	51.0667	11.25	
 DE	99439	Krautheim	Thüringen	TH		00	Weimarer Land	16071	51.0833	11.3	
